@@ -1,0 +1,130 @@
+@bar-width: 3px;
+@bar-dot-color: red;
+
+.resize-bar {
+  position: absolute;
+  z-index: 99;
+
+  &:hover {
+    display: block;
+  }
+
+  &.left {
+    width: @bar-width;
+    left: -1px;
+    top: 0;
+    height: 100%;
+    cursor: ew-resize;
+
+    &:hover::after {
+      display: block;
+    }
+
+    &::after {
+      display: none;
+      position: absolute;
+      content: '';
+      width: @bar-width + 1;
+      height: @bar-width * 3;
+      box-sizing: border-box;
+
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid @bar-dot-color;
+      border-top-width: 0;
+      border-bottom-width: 0;
+    }
+  }
+
+  &.top {
+    width: 100%;
+    left: 0;
+    top: -1px;
+    height: @bar-width;
+    
+    cursor: ns-resize;
+
+    &:hover::after {
+        display: block;
+      }
+
+    &::after {
+        display: none;
+      position: absolute;
+      content: '';
+      width: @bar-width * 3;
+      height: @bar-width + 1;
+      box-sizing: border-box;
+
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid @bar-dot-color;
+      border-left-width: 0;
+      border-right-width: 0;
+    }
+  }
+
+  &.right {
+    width: @bar-width;
+    right: -1px;
+    top: 0;
+    height: 100%;
+    cursor: ew-resize;
+
+    &:hover::after {
+        display: block;
+      }
+
+    &::after {
+        display: none;
+      position: absolute;
+      content: '';
+      width: @bar-width + 1;
+      height: @bar-width * 3;
+      box-sizing: border-box;
+
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid @bar-dot-color;
+      border-top-width: 0;
+      border-bottom-width: 0;
+    }
+  }
+
+  &.bottom {
+    width: 100%;
+    left: 0;
+    bottom: -1px;
+    height: @bar-width;
+
+    
+    cursor: ns-resize;
+
+    &:hover::after {
+        display: block;
+      }
+
+    &::after {
+        display: none;
+      position: absolute;
+      content: '';
+      width: @bar-width * 3;
+      height: @bar-width + 1;
+      box-sizing: border-box;
+
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid @bar-dot-color;
+      border-left-width: 0;
+      border-right-width: 0;
+    }
+  }
+}
+
+#resize-guide-line {
+  background-color: lighten(@bar-dot-color, 10%);
+}

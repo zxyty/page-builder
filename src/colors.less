@@ -1,0 +1,20 @@
+
+// 大部分区域背景颜色
+@bg-light-color: #F0F0F0;
+@bg-dark-color: #F0F0F0;
+.setBgColor(@theme) when (@theme = "light") {
+    background-color: @bg-light-color;
+}
+.setBgColor(@theme) when (@theme = "dark") {
+    background-color: @bg-dark-color;
+}
+
+// top/left header辅助线区域
+@bg-section-light-color: #444444;
+@bg-section-dark-color: #444444;
+.setSectionBgColor(@theme) when (@theme = "light") {
+    background-color: @bg-section-light-color;
+}
+.setSectionBgColor(@theme) when (@theme = "dark") {
+    background-color: @bg-section-dark-color;
+}

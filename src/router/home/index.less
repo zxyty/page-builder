@@ -1,0 +1,41 @@
+@import "~@/reset.less";
+@import "~@/vars.less";
+@import "~@/colors.less";
+
+.ruler-layout {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    width: 100%;
+    height: calc(~"100% - @{controls-height}");
+
+    &-header {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: @ruler-height;
+
+        .ruler-placeholder {
+            display: flex;
+            min-width: @ruler-height;
+            height: 100%;
+            
+            .setSectionBgColor(@currTheme);
+        }
+        .ruler-x-wrap {
+            display: flex;
+            flex: 1;
+            height: 100%;
+            .setSectionBgColor(@currTheme);
+        }
+    }
+    
+
+    .ruler-y-wrap {
+        display: flex;
+        width: @ruler-height;
+        height: calc(~"100% - @{ruler-height}");
+        .setSectionBgColor(@currTheme);
+    }
+}

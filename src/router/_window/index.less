@@ -1,11 +1,17 @@
+@import "~@/reset.less";
+@import "~@/vars.less";
+@import "~@/colors.less";
+
 html,
 body,
 #root {
+  width: 100%;
   height: 100%;
+  .setBgColor(@currTheme);
+  overflow: hidden;
 }
 
-div,p,ul {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+.page-layout {
+  width: 100%;
+  height: 100%;
 }

@@ -127,6 +127,7 @@ module.exports = {
   resolve: {
     extensions: [".js", ".ts", ".jsx", ".tsx", ".json"],
     alias: {
+      "@": join(__dirname, "../src"),
       "@docs": join(__dirname, "../src/docs"),
       "@dva-redux": join(__dirname, "../src/dva-redux"),
       "@utils": join(__dirname, "../src/utils"),
