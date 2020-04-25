@@ -1,9 +1,8 @@
 import React from "react";
 import Controls from "@components/controls";
 import Ruler from "@components/ruler";
-
+import Resizable from "xy-resizable";
 import "./index.less";
-import Resizeable from "@components/libs/resizeable";
 
 interface HomeProps {}
 
@@ -17,7 +16,7 @@ export default class Home extends React.PureComponent<HomeProps> {
 
         <div className="ruler-layout">
           <div className="ruler-layout-header">
-            <Resizeable
+            <Resizable
               onResizeEnd={() => {
                 this.rulerRefCom.current?.resetCanvas();
               }}
@@ -25,11 +24,11 @@ export default class Home extends React.PureComponent<HomeProps> {
               direction="right"
             >
               <div className="ruler-placeholder" />
-            </Resizeable>
+            </Resizable>
             <div className="ruler-x-wrap">
               <Ruler direction="x" ref={this.rulerRefCom} />
             </div>
-            <Resizeable
+            <Resizable
               onResizeEnd={() => {
                 this.rulerRefCom.current?.resetCanvas();
               }}
@@ -37,7 +36,7 @@ export default class Home extends React.PureComponent<HomeProps> {
               direction="left"
             >
               <div className="ruler-placeholder" />
-            </Resizeable>
+            </Resizable>
           </div>
 
           <div className="ruler-y-wrap">
