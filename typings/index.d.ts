@@ -11,10 +11,6 @@ declare global {
   interface NodeModule {
     hot: any;
   }
-
-  interface Window {
-    _syncModelStore: Function;
-  }
 }
 
 export {};

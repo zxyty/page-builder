@@ -18,8 +18,12 @@
 
         .ruler-placeholder {
             display: flex;
-            min-width: @ruler-height;
+            min-width: @ruler-height * 2;
             height: 100%;
+
+            &.last {
+                min-width: @ruler-height;
+            }
             
             .setSectionBgColor(@currTheme);
         }
@@ -31,11 +35,35 @@
         }
     }
     
-
-    .ruler-y-wrap {
+    &-contianer {
         display: flex;
-        width: @ruler-height;
+        position: relative;
+        width: 100%;
         height: calc(~"100% - @{ruler-height}");
-        .setSectionBgColor(@currTheme);
+        flex-direction: row;
+
+        .ruler-y-wrap {
+            display: flex;
+            width: @ruler-height;
+            height: 100%;
+            .setSectionBgColor(@currTheme);
+        }
+
+        .stage-wrap {
+            position: static;
+            display: flex;
+            width: calc(~"100% - @{ruler-height}");
+            height: 100%;
+            background-color: @bg-stage-wrap-color;
+
+            .drawer-wrap {
+                position: absolute; // 以container 为参照物
+                left: @ruler-height * 2;
+                right: @ruler-height;
+                top: 0;
+                bottom: 0;
+                background-color: @bg-stage-color;
+            }
+        }
     }
 }

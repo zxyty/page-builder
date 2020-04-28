@@ -1,0 +1,19 @@
+.builder-grid-item {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px dashed #eee;
+   
+    &:hover {
+        &::after {
+            position: absolute;
+            content: "";
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: -webkit-linear-gradient(top, transparent 20px, #999 21px),
+            -webkit-linear-gradient(left, transparent 20px, #999 21px);
+            background-size: 21px 21px;
+        }
+    }
+}

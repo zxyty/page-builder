@@ -49,6 +49,7 @@ module.exports = {
     "import/no-unresolved": 0,
     "import/extensions": 0,
     "import/no-self-import" : 0,
-    "global-require": 0
+    "global-require": 0,
+    "no-unused-expressions": 0
   }
 };
