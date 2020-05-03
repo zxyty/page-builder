@@ -25,19 +25,22 @@ export default class GridBuilder extends React.PureComponent<
     initHeight: number,
     currDom: HTMLElement
   ) => {
-    // if resized x?
-    if (resizedX) {
-      const changeWidth = resizedX + initWidth;
-      const maxWidth = currDom.parentElement?.getBoundingClientRect().width!;
-      const currWidth =
-        changeWidth >= maxWidth ? maxWidth : changeWidth <= 0 ? 0 : changeWidth;
-      currDom.style.width = `${currWidth}px`;
-    }
-    if (resizedY) {
-      const changeHeight = resizedY + initHeight;
-      const currHeight = changeHeight <= 0 ? 0 : changeHeight;
-      currDom.style.height = `${currHeight}px`;
-    }
+    const { dispatch } = this.props;
+    dispatch!();
+
+    // // if resized x?
+    // if (resizedX) {
+    //   const changeWidth = resizedX + initWidth;
+    //   const maxWidth = currDom.parentElement?.getBoundingClientRect().width!;
+    //   const currWidth =
+    //     changeWidth >= maxWidth ? maxWidth : changeWidth <= 0 ? 0 : changeWidth;
+    //   currDom.style.width = `${currWidth}px`;
+    // }
+    // if (resizedY) {
+    //   const changeHeight = resizedY + initHeight;
+    //   const currHeight = changeHeight <= 0 ? 0 : changeHeight;
+    //   currDom.style.height = `${currHeight}px`;
+    // }
   };
 
   render() {
