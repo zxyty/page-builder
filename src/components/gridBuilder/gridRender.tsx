@@ -4,10 +4,10 @@ import GridLayout from "@components/libs/grid";
 import Resizable from "xy-resizable";
 import GridBuilder from "@components/gridBuilder";
 
-const getGridLayoutTpl = (children: DrawerLayoutGridType[]) => {
+const getGridLayoutTpl = (curr: DrawerLayoutGridType) => {
   return {
-    rows: ["1fr", "1fr", "1fr"],
-    cols: ["1fr", "1fr", "1fr"]
+    rows: curr.rowsTemplate!,
+    cols: curr.colsTemplate!
   };
 };
 
@@ -22,7 +22,7 @@ function gridRender(
   const children = allLayouts.filter(c => childrenKeys.includes(c.key));
 
   if (children.length) {
-    const { rows, cols } = getGridLayoutTpl(children);
+    const { rows, cols } = getGridLayoutTpl(curr);
     return (
       <GridLayout id={curr.key} rows={rows} cols={cols}>
         {children.map(c => {
@@ -47,6 +47,7 @@ function gridRender(
     <Resizable
       showGuideLine
       direction={["right", "bottom"]}
+      enableAutoResize={false}
       onResizeEnd={_this.handleResizeEndGrid}
     >
       <GridLayout.Item

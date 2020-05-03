@@ -7,6 +7,7 @@ import { DrawerStoreType } from "@dva-redux/stores/drawerStore";
 import gridRender from "./gridRender";
 
 import "./index.less";
+import drawerActions from "@dva-redux/actions/drawerActions";
 
 interface GridBuilderProps {
   drawerModel?: DrawerStoreType;
@@ -26,9 +27,16 @@ export default class GridBuilder extends React.PureComponent<
     currDom: HTMLElement
   ) => {
     const { dispatch } = this.props;
-    dispatch!();
-
-    // // if resized x?
+    dispatch!(
+      drawerActions.changeGridSize({
+        resizedX,
+        resizedY,
+        initWidth,
+        initHeight,
+        currDom
+      })
+    );
+    // if resized x?
     // if (resizedX) {
     //   const changeWidth = resizedX + initWidth;
     //   const maxWidth = currDom.parentElement?.getBoundingClientRect().width!;

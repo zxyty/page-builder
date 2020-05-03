@@ -1,3 +1,5 @@
+import { Action } from "redux";
+
 export const actionCreatorFactory = (type, ...argNames) => (...args) => {
   const action = {
     type
@@ -13,7 +15,7 @@ export const actionCreatorFactory = (type, ...argNames) => (...args) => {
   return action;
 };
 
-type DispatchFunType = (payload?: any) => void;
+type DispatchFunType = (payload?: any) => Action;
 type ActionType<T> = { [P in keyof T]: string };
 type ActionCreateType<T> = {
   [P in keyof T]: DispatchFunType & {

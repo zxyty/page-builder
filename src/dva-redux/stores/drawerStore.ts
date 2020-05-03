@@ -10,6 +10,9 @@ export interface DrawerLayoutGridType {
   width?: number;
   height?: number;
 
+  colsTemplate?: string[];
+  rowsTemplate?: string[];
+
   component?: any;
 
   children?: string[]; // key
@@ -25,7 +28,9 @@ const initStore: DrawerStoreType = {
   layouts: [
     {
       key: "init",
-      children: defaultChildGrid.map(c => c.key)
+      children: defaultChildGrid.map(c => c.key),
+      colsTemplate: ["1fr", "1fr", "1fr"],
+      rowsTemplate: ["1fr", "1fr", "1fr"]
     },
     ...defaultChildGrid,
     ...testData

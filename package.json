@@ -22,7 +22,7 @@
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.1.2",
     "xy-imageloader": "^1.0.0",
-    "xy-resizable": "^1.0.0"
+    "xy-resizable": "^1.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",

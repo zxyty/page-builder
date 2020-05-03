@@ -11,7 +11,9 @@ export const getGridConfig = (parentKey = "init") => {
       rowIndex: 1,
       colIndex: 2,
       parentKey,
-      children: testData.map(c => c.key)
+      children: testData.map(c => c.key),
+      colsTemplate: ["1fr", "1fr", "1fr"],
+      rowsTemplate: ["1fr", "1fr", "1fr"]
     },
     {
       key: `${parentKey}-1-3`,

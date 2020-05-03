@@ -6,6 +6,12 @@ export const actions = {
   changeGridSize: "changeGridSize"
 };
 
-const a = actionsFactory(actions, DRAWER_NAMESPACE);
+export interface ChangeGridSizePayloadType {
+  resizedX: number;
+  resizedY: number;
+  initWidth: number;
+  initHeight: number;
+  currDom: HTMLElement;
+}
 
-a.changeGridSize();
+export default actionsFactory(actions, DRAWER_NAMESPACE);
