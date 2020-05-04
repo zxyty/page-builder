@@ -7,7 +7,7 @@ import GridBuilder from "@components/gridBuilder";
 const getGridLayoutTpl = (curr: DrawerLayoutGridType) => {
   return {
     rows: curr.rowsTemplate!,
-    cols: curr.colsTemplate!
+    cols: curr.colsTemplate!,
   };
 };
 
@@ -19,16 +19,16 @@ function gridRender(
 
   const childrenKeys = curr.children || [];
 
-  const children = allLayouts.filter(c => childrenKeys.includes(c.key));
+  const children = allLayouts.filter((c) => childrenKeys.includes(c.key));
 
   if (children.length) {
     const { rows, cols } = getGridLayoutTpl(curr);
     return (
       <GridLayout id={curr.key} rows={rows} cols={cols}>
-        {children.map(c => {
+        {children.map((c) => {
           return (
             <React.Fragment key={c.key}>
-              {gridRender.call(this, c, allLayouts)}{" "}
+              {gridRender.call(this, c, allLayouts)}
             </React.Fragment>
           );
         })}
@@ -42,6 +42,15 @@ function gridRender(
   const colConfig: any = curr.colSpan
     ? { pos: curr.colIndex, span: curr.colSpan }
     : curr.colIndex;
+
+  // const resizeDireactions = [];
+
+  // if (curr?.rowIndex! + (curr.rowSpan || 0) < parentRows?.length!) {
+  //   resizeDireactions.push("bottom");
+  // }
+  // if (curr?.colIndex! + (curr.colSpan || 0) < parentCols?.length!) {
+  //   resizeDireactions.push("right");
+  // }
 
   return (
     <Resizable

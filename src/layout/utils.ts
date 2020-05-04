@@ -43,14 +43,15 @@ export const getGridConfig = (parentKey = "init") => {
       key: `${parentKey}-3-1`,
       rowIndex: 3,
       colIndex: 1,
+      colSpan: 2,
       parentKey
     },
-    {
-      key: `${parentKey}-3-2`,
-      rowIndex: 3,
-      colIndex: 2,
-      parentKey
-    },
+    // {
+    //   key: `${parentKey}-3-2`,
+    //   rowIndex: 3,
+    //   colIndex: 2,
+    //   parentKey
+    // },
     {
       key: `${parentKey}-3-3`,
       colIndex: 3,
@@ -70,30 +71,14 @@ export const testData = [
     key: `init-1-2-1-2`,
     rowIndex: 1,
     colIndex: 2,
-    parentKey: "init-1-2"
-  },
-  {
-    key: `init-1-2-1-3`,
-    rowIndex: 1,
-    colIndex: 3,
+    rowSpan: 2,
+    colSpan: 2,
     parentKey: "init-1-2"
   },
   {
     key: `init-1-2-2-1`,
     rowIndex: 2,
     colIndex: 1,
-    parentKey: "init-1-2"
-  },
-  {
-    key: `init-1-2-2-2`,
-    colIndex: 2,
-    rowIndex: 2,
-    parentKey: "init-1-2"
-  },
-  {
-    key: `init-1-2-2-3`,
-    rowIndex: 2,
-    colIndex: 3,
     parentKey: "init-1-2"
   },
   {

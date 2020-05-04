@@ -4,10 +4,10 @@ import { connect } from "dva";
 import { DRAWER_NAMESPACE } from "@dva-redux/namespace";
 import { DispatchType } from "@components/Type";
 import { DrawerStoreType } from "@dva-redux/stores/drawerStore";
+import drawerActions from "@dva-redux/actions/drawerActions";
 import gridRender from "./gridRender";
 
 import "./index.less";
-import drawerActions from "@dva-redux/actions/drawerActions";
 
 interface GridBuilderProps {
   drawerModel?: DrawerStoreType;

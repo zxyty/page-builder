@@ -1,11 +1,11 @@
 import { DRAWER_NAMESPACE } from "@dva-redux/namespace";
 import initStore, {
   DrawerStoreType,
-  DrawerLayoutGridType
+  DrawerLayoutGridType,
 } from "@dva-redux/stores/drawerStore";
 import drawerActions, {
   actions,
-  ChangeGridSizePayloadType
+  ChangeGridSizePayloadType,
 } from "@dva-redux/actions/drawerActions";
 
 const model = {
@@ -15,7 +15,7 @@ const model = {
   reducers: {
     [actions.setState](state, { payload }) {
       return Object.assign({}, state, payload);
-    }
+    },
   },
   effects: {
     *[actions.changeGridSize]({ payload }, { put, select }) {
@@ -23,26 +23,26 @@ const model = {
       const {
         resizedX,
         resizedY,
-        currDom
+        currDom,
       } = payload as ChangeGridSizePayloadType;
       const { id: currDomKey } = currDom;
 
       const { layouts } = (yield select(
-        state => state[DRAWER_NAMESPACE]
+        (state) => state[DRAWER_NAMESPACE]
       )) as DrawerStoreType;
 
       // 获取parents
       // 从子节点往父节点查询容器进行resize
       const parents: DrawerLayoutGridType[] = [];
       let currentGridItem: DrawerLayoutGridType | undefined = layouts.find(
-        c => c.key === currDomKey
+        (c) => c.key === currDomKey
       );
       parents.push(currentGridItem!);
 
       while (currentGridItem) {
         const parentItem = currentGridItem!.parentKey
           ? // eslint-disable-next-line no-loop-func
-            layouts.find(c => c.key === currentGridItem!.parentKey)
+            layouts.find((c) => c.key === currentGridItem!.parentKey)
           : undefined;
         if (parentItem) {
           parents.push(parentItem);
@@ -56,56 +56,65 @@ const model = {
         }
 
         const allChildren = layouts.filter(
-          d => d.parentKey === parents[i + 1].key
+          (d) => d.parentKey === parents[i + 1].key
         );
 
         // eslint-disable-next-line prettier/prettier
         const matrix = [
           [0, 0, 0], // col
-          [0, 0, 0] // row
+          [0, 0, 0], // row
         ];
 
-        // Todo 高度自适应情况 保留 1fr
-        allChildren.forEach(d => {
+        let currLevelTotalWidth = 0;
+        let currLevelTotalHeight = 0;
+        allChildren.forEach((d) => {
           const { width: cWidth, height: cHeight } = document
             .querySelector(`#${d.key}`)
             ?.getBoundingClientRect()!;
 
           if (!d.colSpan || d.colSpan <= 1) {
-            matrix[0][d.colIndex! - 1] = cWidth;
+            matrix[0][d.colIndex! - 1] = cWidth!;
+            currLevelTotalWidth += cWidth!;
           }
           if (!d.rowSpan || d.rowSpan <= 1) {
             matrix[1][d.rowIndex! - 1] = cHeight!;
+            currLevelTotalHeight += cHeight!;
           }
         });
 
-        const colsTemplate = matrix[0].filter(d => d).map(d => `${d}px`);
-        const rowsTemplate = matrix[1].filter(d => d).map(d => `${d}px`);
+        const colsTemplate = matrix[0].filter((d) => d).map((d) => `${d}px`);
+        const rowsTemplate = matrix[1].filter((d) => d).map((d) => `${d}px`);
 
         if (resizedX) {
-          const shouldIndex = c.colIndex! + (c.colSpan || 0) - 1;
+          const shouldIndex = c.colIndex! + (c.colSpan ? c.colSpan - 1 : 0) - 1;
           const newWidth = parseInt(colsTemplate[shouldIndex]!, 10) + resizedX;
           colsTemplate[shouldIndex] = newWidth <= 0 ? "0px" : `${newWidth}px`;
 
+          // 宽度自适应情况
+          // 保留 1fr 最后一列
+          colsTemplate[matrix[0].length - 1] = "1fr";
+
           parents[i + 1].colsTemplate = colsTemplate;
         } else {
-          const shouldIndex = c.rowIndex! + (c.rowSpan || 0) - 1;
+          const shouldIndex = c.rowIndex! + (c.rowSpan ? c.rowSpan - 1 : 0) - 1;
           const newHeight = parseInt(rowsTemplate[shouldIndex]!, 10) + resizedY;
           rowsTemplate[shouldIndex] = newHeight <= 0 ? "0px" : `${newHeight}px`;
+
+          // 高度自适应情况
+          // 保留 1fr 最后一行
+          rowsTemplate[matrix[1].length - 1] = "1fr";
 
           parents[i + 1].rowsTemplate = rowsTemplate;
         }
       });
 
-      // Todo 从父节点往子节点查询容器进行resize
-
       yield put(
         drawerActions.setState.model({
-          layouts: [...layouts]
+          layouts: [...layouts],
         })
       );
-    }
-  }
+    },
+  },
 };
 
 export default model;
