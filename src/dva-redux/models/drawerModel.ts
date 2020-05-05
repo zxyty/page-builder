@@ -18,6 +18,11 @@ const model = {
     },
   },
   effects: {
+    *[actions.selectGridSpan]({ payload }, { put, select }) {
+      const { layouts } = (yield select(
+        (state) => state[DRAWER_NAMESPACE]
+      )) as DrawerStoreType;
+    },
     *[actions.changeGridSize]({ payload }, { put, select }) {
       // ChangeGridSizePPayloadType
       const {

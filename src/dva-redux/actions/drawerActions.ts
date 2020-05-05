@@ -3,7 +3,8 @@ import { DRAWER_NAMESPACE } from "@dva-redux/namespace";
 
 export const actions = {
   setState: "setState",
-  changeGridSize: "changeGridSize"
+  changeGridSize: "changeGridSize",
+  selectGridSpan: "selectGridSpan",
 };
 
 export interface ChangeGridSizePayloadType {
